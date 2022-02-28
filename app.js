@@ -22,7 +22,7 @@ const showPlayerDetails = (players) => {
     <p>description</p>
     <div class="allButtion">
         <button " class="btn btn-danger">Delete</button>
-         <button onclick="details(${player.idPlayer})" class="btn btn-success">details</button>
+         <button onclick="details('${player.idPlayer}')" class="btn btn-success">details</button>
     </div>
 </div>
 </div>`;
@@ -32,12 +32,33 @@ const showPlayerDetails = (players) => {
     // console.log(players);
 }
 
-const details=(info)=>{
-    const url =`https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=${info}`;
+const details=(id)=>{
+    const url =`https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=${id}`;
     fetch(url)
     .then(res=>res.json())
-    .then(data => console.log(data));
+    .then(data => setDetails(data.players[0]));
 
     // console.log("ok boss",info);
+
+}
+
+const setDetails =(info)=>{
+    // console.log(info);
+    // console.log(info.strGender);
+    if(info.strGender=="male"){
+        document.getElementById("male").style.display="block";
+        document.getElementById("female").style.display="none";
+    }
+    else{
+        document.getElementById("male").style.display="none";
+        document.getElementById("female").style.display="block";
+
+    }
+    document.getElementById("details-container").innerHTML=`
+    <div>
+    <img src="" alt="">
+    <h1>Name:${info.strPlayer} </h1>
+    </div>
+    `;
 
 }
