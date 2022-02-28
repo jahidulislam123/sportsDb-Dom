@@ -21,8 +21,8 @@ const showPlayerDetails = (players) => {
     <h5>${player.strNationality}</h5>
     <p>description</p>
     <div class="allButtion">
-        <button class="btn btn-danger">Delete</button>
-         <button class="btn btn-success">details</button>
+        <button " class="btn btn-danger">Delete</button>
+         <button onclick="details(${player.idPlayer})" class="btn btn-success">details</button>
     </div>
 </div>
 </div>`;
@@ -30,4 +30,14 @@ const showPlayerDetails = (players) => {
 
     }
     // console.log(players);
+}
+
+const details=(info)=>{
+    const url =`https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=${info}`;
+    fetch(url)
+    .then(res=>res.json())
+    .then(data => console.log(data));
+
+    // console.log("ok boss",info);
+
 }
