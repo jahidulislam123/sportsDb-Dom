@@ -1,4 +1,5 @@
 const allPlayers = () => {
+    document.getElementById
     const searchValue = document.getElementById('search-box').value;
     // console.log(searchValue);
     const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${searchValue}`;
